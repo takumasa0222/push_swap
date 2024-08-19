@@ -1,24 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tamatsuu <tamatsuu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/17 02:44:28 by tamatsuu          #+#    #+#             */
-/*   Updated: 2024/08/20 05:14:02 by tamatsuu         ###   ########.fr       */
+/*   Created: 2024/08/20 05:16:08 by tamatsuu          #+#    #+#             */
+/*   Updated: 2024/08/20 05:16:40 by tamatsuu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "push_swap.h"
-
-int	main(int argc, char *argv[])
-{
-	validate_args(argc, argv);
-	init(argv);
-	return (0);
-}
 
 int	init(char **argv)
 {
