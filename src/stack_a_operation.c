@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_a_operation.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tamatsuu <tamatsuu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tamatsuu <tamatsuu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 05:17:54 by tamatsuu          #+#    #+#             */
-/*   Updated: 2024/08/20 06:42:13 by tamatsuu         ###   ########.fr       */
+/*   Updated: 2024/08/20 14:07:52 by tamatsuu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	sa(t_stack_inf *stack_inf)
 		throw_err(stack_inf, NULL, ARG_NULL_ERR);
 	if (ft_lstsize(stack_inf->stack_a) < 2)
 		return ;
-	ft_lstswap_front(stack_inf->stack_a);
+	ft_lstswap_front(&stack_inf->stack_a);
 	describe_ope(stack_inf->ope_inf, SA);
 }
 
@@ -59,13 +59,17 @@ void	ra(t_stack_inf *stack_inf)
 void	rra(t_stack_inf *stack_inf)
 {
 	t_list	*tmp;
+	t_list	*second_last;
 
 	if (!stack_inf)
 		throw_err(stack_inf, NULL, ARG_NULL_ERR);
 	if (ft_lstsize(stack_inf->stack_a) < 2)
 		return ;
 	tmp = ft_lstlast(stack_inf->stack_a);
+	second_last = stack_inf->stack_a;
+	while (second_last->next->next)
+		second_last = second_last->next;
+	second_last->next = NULL;
 	ft_lstadd_front(&stack_inf->stack_a, tmp);
-	ft_lstdel_lastone(&stack_inf->stack_a);
 	describe_ope(stack_inf->ope_inf, RRA);
 }
