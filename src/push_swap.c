@@ -6,7 +6,7 @@
 /*   By: tamatsuu <tamatsuu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 05:16:08 by tamatsuu          #+#    #+#             */
-/*   Updated: 2024/08/20 14:20:44 by tamatsuu         ###   ########.fr       */
+/*   Updated: 2024/08/20 18:31:30 by tamatsuu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,4 @@ void	split_chunk(t_stack_inf *stack_inf, int pos, int index, int unit_num)
 // {
 
 // }
-int	basic_sort(t_stack_inf *stack_inf, int pos, int unit_num)
-{
-	if (1 < unit_num && unit_num <= 5)
-		short_sort();
-	else if (3 < unit_num && unit_num <= 5)
-		mid_sort(stack_inf, A_BOTTOM);
-	else
-		throw_err(stack_inf, NULL, MEM_ALLOCATION_ERR);
-}
+
