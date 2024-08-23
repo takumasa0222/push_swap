@@ -6,7 +6,7 @@
 /*   By: tamatsuu <tamatsuu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 20:51:48 by tamatsuu          #+#    #+#             */
-/*   Updated: 2024/08/20 12:35:01 by tamatsuu         ###   ########.fr       */
+/*   Updated: 2024/08/24 02:40:18 by tamatsuu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,27 @@
 # define A_BOTTOM 0
 # define B_TOP 1
 # define B_BOTTOM 2
+# define A_TOP 3
 
 # define MEM_ALLOCATION_ERR -1
 # define ARG_NULL_ERR -2
+# define NULL_ERR -3
 
-typedef enum
+# define ERR_MSG "ERROR\n"
+
+enum e_push_swap_code
 {
-	SA = 0,
-	PA = 1,
-	RA = 2,
-	RRA = 3,
-	SB = 4,
-	PB = 5,
-	RB = 6,
-	RRB = 7,
-	RR = 8,
-	RRR = 10
-} push_swap_code;
+	SA,
+	PA,
+	RA,
+	RRA,
+	SB,
+	PB,
+	RB,
+	RRB,
+	RR,
+	RRR
+};
 
 typedef struct s_ope_inf
 {

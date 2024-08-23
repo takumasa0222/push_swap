@@ -6,7 +6,7 @@
 /*   By: tamatsuu <tamatsuu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 05:16:08 by tamatsuu          #+#    #+#             */
-/*   Updated: 2024/08/20 18:31:30 by tamatsuu         ###   ########.fr       */
+/*   Updated: 2024/08/24 02:56:55 by tamatsuu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,18 +56,43 @@ int	push_swap(t_stack_inf *stack_inf)
 
 void	split_chunk(t_stack_inf *stack_inf, int pos, int index, int unit_num)
 {
+	int	sec_index;
+	int	n_unum;
+
 	if (base_case())
 	{
 		basic_sort(stack_inf, pos, unit_num);
 		return ;
 	}
-	// split_operation(stack_a,stack_b, );
-	split_chunk(stack_inf, A_BOTTOM, unit_num / 3 * 2 + unit_num / 9, unit_num / 3);
-	split_chunk(stack_inf, B_TOP, unit_num / 3 + unit_num / 9, unit_num / 3);
-	split_chunk(stack_inf, B_BOTTOM, unit_num + unit_num / 9, unit_num / 3);
+	split_operation(stack_inf, pos, index, unit_num);
+	sec_index = index + unit_num / 3;
+	n_unum = unit_num / 3;
+	split_chunk(stack_inf, A_BOTTOM, sec_index + n_unum / 3, n_unum);
+	split_chunk(stack_inf, B_TOP, index + n_unum / 3, n_unum);
+	split_chunk(stack_inf, B_BOTTOM, index - (n_unum - n_unum / 3), \
+	n_unum + unit_num % 3);
 }
-// 	split_operation()
-// {
 
-// }
+void	split_operation(t_stack_inf *stack_inf, int pos, int index, int u_num)
+{
+	int	i;
+	int	fst_mid_num;
+	int	sec_mid_num;
+
+	if (!stack_inf)
+		throw_err(stack_inf, NULL, NULL_ERR);
+	i = 0;
+	fst_mid_num = stack_inf->sorted_arry[index];
+	sec_mid_num = stack_inf->sorted_arry[index + u_num / 3];
+	while (i < u_num)
+	{
+		if (take(stack_inf, pos) < fst_mid_num)
+			move_to_b_bottom(stack_inf, pos);
+		else if (sec_mid_num <= take(stack_inf, pos))
+			move_to_a_bottom(stack_inf, pos);
+		else
+			move_to_b_top(stack_inf, pos);
+		i++;
+	}
+}
 
