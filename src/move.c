@@ -6,7 +6,7 @@
 /*   By: tamatsuu <tamatsuu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 02:30:52 by tamatsuu          #+#    #+#             */
-/*   Updated: 2024/08/24 02:45:34 by tamatsuu         ###   ########.fr       */
+/*   Updated: 2024/08/24 04:35:03 by tamatsuu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,20 @@ void	move_to_b_bottom(t_stack_inf *stack_inf, int pos)
 		rra(stack_inf);
 		pb(stack_inf);
 		rb(stack_inf);
+	}
+}
+
+void	move_back(t_stack_inf *stack_inf, int pos, int j)
+{
+	int	i;
+
+	i = 0;
+	while (i < j)
+	{
+		if (pos == B_TOP || pos == B_BOTTOM)
+			pb(stack_inf);
+		else if (pos == A_BOTTOM)
+			ra(stack_inf);
+		i++;
 	}
 }

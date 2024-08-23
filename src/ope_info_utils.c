@@ -6,7 +6,7 @@
 /*   By: tamatsuu <tamatsuu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 00:07:21 by tamatsuu          #+#    #+#             */
-/*   Updated: 2024/08/24 02:27:54 by tamatsuu         ###   ########.fr       */
+/*   Updated: 2024/08/24 04:04:53 by tamatsuu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,12 @@ void	add_ope(t_ope_inf *ope_inf, enum e_push_swap_code cd)
 }
 
 
-//describe_ope(t_ope_inf ope_inf, enum e_push_swap_code op)
-//{
-	
-//}
+void	describe_ope(t_ope_inf *ope_inf)
+{
+
+}
+
+void	optimize_ope(t_ope_inf *ope_inf)
+{
+
+}

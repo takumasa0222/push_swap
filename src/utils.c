@@ -6,7 +6,7 @@
 /*   By: tamatsuu <tamatsuu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 23:16:38 by tamatsuu          #+#    #+#             */
-/*   Updated: 2024/08/24 00:07:11 by tamatsuu         ###   ########.fr       */
+/*   Updated: 2024/08/24 04:01:46 by tamatsuu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ void	free_stack_inf(t_stack_inf *stack_inf)
 	free(stack_inf);
 }
 
-void delete(void *val)
+void	delete(void *val)
 {
 	val = NULL;
-	return ;	
+	return ;
 }
 
 int	write_err(int err_code)
@@ -50,4 +50,3 @@ int	write_err(int err_code)
 	ft_putstr_fd(ERR_MSG, stdout);
 	return (0);
 }
-
