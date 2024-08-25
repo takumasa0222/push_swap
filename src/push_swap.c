@@ -6,14 +6,14 @@
 /*   By: tamatsuu <tamatsuu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 05:16:08 by tamatsuu          #+#    #+#             */
-/*   Updated: 2024/08/24 04:32:21 by tamatsuu         ###   ########.fr       */
+/*   Updated: 2024/08/25 18:46:39 by tamatsuu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "push_swap.h"
 
-int	init(char **argv)
+void	init(char **argv)
 {
 	int			arg_size;
 	int			arry[ARRY_SIZE];
@@ -32,13 +32,13 @@ int	init(char **argv)
 	if (!stack_inf->stack_a || !stack_inf->stack_b)
 		throw_err(stack_inf, op_inf, MEM_ALLOCATION_ERR);
 	tsfrm_arg_to_arry(argv, &arry, ARRY_SIZE, &arg_size);
-	//push array value into stack_a
 	init_stack(stack_inf->stack_a, arry, arg_size);
-	//sort arry and create index
 	create_index(&arry, arg_size);
 	stack_inf->sorted_arry = arry;
 	stack_inf->ope_inf->op_arry = op_arry;
 	push_swap(stack_inf);
+	describe_ope(stack_inf->ope_inf);
+	end_program(stack_inf);
 }
 
 int	push_swap(t_stack_inf *stack_inf)
@@ -46,9 +46,9 @@ int	push_swap(t_stack_inf *stack_inf)
 	int	lst_size;
 
 	lst_size = ft_lstsize(stack_inf->stack_a);
-	if (1 < lst_size && lst_size <= 5)
-		basic_sort(stack_inf, A_BOTTOM, lst_size);
-	else if (5 < lst_size)
+	if (1 < lst_size && lst_size <= 3)
+		basic_sort(stack_inf, A_TOP, lst_size);
+	else if (3 < lst_size)
 		split_chunk(stack_inf, A_TOP, lst_size / 3, lst_size);
 	else
 		throw_err(stack_inf, NULL, MEM_ALLOCATION_ERR);
@@ -60,7 +60,7 @@ void	split_chunk(t_stack_inf *stack_inf, int pos, int index, int unit_num)
 	int	n_unum;
 	int	a_position;
 
-	if (base_case())
+	if (unit_num <= 3)
 	{
 		basic_sort(stack_inf, pos, unit_num);
 		return ;
@@ -89,14 +89,14 @@ void	split_operation(t_stack_inf *stack_inf, int pos, int index, int u_num)
 	j = 0;
 	while (i < u_num)
 	{
-		target_num = take_first_elem(stack_inf, pos);
+		target_num = c(stack_inf, pos);
 		if (target_num < stack_inf->sorted_arry[index])
 			move_to_b_bottom(stack_inf, pos);
 		else if (stack_inf->sorted_arry[index + u_num / 3] <= target_num)
 			move_to_a_bottom(stack_inf, pos);
 		else
 			move_to_b_top(stack_inf, pos);
-		if (take_first_elem(stack_inf, pos) == target_num && pos != A_TOP)
+		if (pos != A_TOP && take_first_elem(stack_inf, pos) == target_num)
 		{
 			move_to_a_top(stack_inf, pos);
 			j++;

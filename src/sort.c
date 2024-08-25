@@ -6,29 +6,26 @@
 /*   By: tamatsuu <tamatsuu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 17:17:16 by tamatsuu          #+#    #+#             */
-/*   Updated: 2024/08/24 03:59:56 by tamatsuu         ###   ########.fr       */
+/*   Updated: 2024/08/25 23:27:26 by tamatsuu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "../libft/libft.h"
 
-int	basic_sort(t_stack_inf *stack_inf, int pos, int unit_num)
+void	basic_sort(t_stack_inf *stack_inf, int pos, int unit_num)
 {
-	if (1 < unit_num && unit_num <= 3)
-	{
+	int	i;
+
+	i = 0;
+	while (i++ < unit_num)
 		move_to_a_top(stack_inf, pos);
-		if (unit_num == 2)
-			sa(stack_inf);
-		else if (unit_num == 3 && ft_lstsize(stack_inf->stack_a) == 3)
-			super_short_sort(stack_inf);
-		else
-			short_sort(stack_inf);
-	}
-	else if (3 < unit_num && unit_num <= 5)
-		mid_sort(stack_inf, A_BOTTOM);
-	else
-		throw_err(stack_inf, NULL, MEM_ALLOCATION_ERR);
+	if (unit_num == 2)
+		sort_two(stack_inf);
+	else if (ft_lstsize(stack_inf->stack_a) == 3)
+		super_short_sort(stack_inf);
+	else if (3 < ft_lstsize(stack_inf->stack_a))
+		short_sort(stack_inf);
 }
 
 void	super_short_sort(t_stack_inf *stack_inf)
@@ -76,10 +73,38 @@ int	tp(t_list *stack, int i)
 	return (*ret);
 }
 
-void	mid_sort(t_stack_inf *stack_inf, int pos)
+void	sort_two(t_stack_inf *stack_inf)
 {
-	
+	t_list	*s;
+
+	s = stack_inf->stack_a;
+	if (!s || !s->next)
+		throw_err(stack_inf, NULL, NULL_ERR);
+	if (tp(s, 2) < tp (s, 1))
+		sa(stack_inf);
 }
+
+//void	mid_sort(t_stack_inf *st_inf, int u_num)
+//{
+//	int	pb_i;
+//	int	rra_i;
+
+//	pb_i = 0;
+//	rra_i = 0;
+//	while (pb_i++ < u_num - 3)
+//		pb(st_inf);
+//	if (ft_lstsize(st_inf->stack_a == 3))
+//		super_short_sort(st_inf);
+//	else
+//		short_sort(st_inf);
+//	if (u_num == 5 && tp(st_inf->stack_b, 1) < tp(st_inf->stack_b, 2))
+//		sb(st_inf);
+//	while (tp(st_inf->stack_a, 1) < tp(st_inf->stack_b, 1) && rra_i++ < u_num)
+//		rra(st_inf);
+//	pa(st_inf);
+	
+//	pa(st_inf);
+//}
 
 short_sort(t_stack_inf *stack_inf)
 {

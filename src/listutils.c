@@ -6,7 +6,7 @@
 /*   By: tamatsuu <tamatsuu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 12:43:23 by tamatsuu          #+#    #+#             */
-/*   Updated: 2024/08/24 04:07:24 by tamatsuu         ###   ########.fr       */
+/*   Updated: 2024/08/25 16:43:57 by tamatsuu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,3 @@ void	ft_lstswap_front(t_list **lst)
 	temp->next = *lst;
 	*lst = temp;
 }
-

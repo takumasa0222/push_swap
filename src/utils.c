@@ -6,7 +6,7 @@
 /*   By: tamatsuu <tamatsuu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 23:16:38 by tamatsuu          #+#    #+#             */
-/*   Updated: 2024/08/24 04:01:46 by tamatsuu         ###   ########.fr       */
+/*   Updated: 2024/08/25 21:46:01 by tamatsuu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ void	free_stack_inf(t_stack_inf *stack_inf)
 {
 	if (!stack_inf)
 		return ;
-	ft_lstclear(stack_inf->stack_a, &delete);
+	ft_lstclear(&stack_inf->stack_a, &delete);
 	stack_inf->stack_a = NULL;
-	ft_lstclear(stack_inf->stack_b, &delete);
+	ft_lstclear(&stack_inf->stack_b, &delete);
 	stack_inf->stack_b = NULL;
 	stack_inf->sorted_arry = NULL;
 	free(stack_inf->ope_inf);
@@ -47,6 +47,6 @@ void	delete(void *val)
 
 int	write_err(int err_code)
 {
-	ft_putstr_fd(ERR_MSG, stdout);
-	return (0);
+	ft_putstr_fd(ERR_MSG, STDOUT_FILENO);
+	return (err_code);
 }
