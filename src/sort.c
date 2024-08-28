@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tamatsuu <tamatsuu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tamatsuu <tamatsuu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 17:17:16 by tamatsuu          #+#    #+#             */
-/*   Updated: 2024/08/25 23:27:26 by tamatsuu         ###   ########.fr       */
+/*   Updated: 2024/08/29 04:51:22 by tamatsuu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	basic_sort(t_stack_inf *stack_inf, int pos, int unit_num)
 	else if (3 < ft_lstsize(stack_inf->stack_a))
 		short_sort(stack_inf);
 }
-
+#include <stdio.h>
 void	super_short_sort(t_stack_inf *stack_inf)
 {
 	t_list	*s;
@@ -35,18 +35,18 @@ void	super_short_sort(t_stack_inf *stack_inf)
 	s = stack_inf->stack_a;
 	if (!s || !s->next || !s->next->next)
 		throw_err(stack_inf, NULL, NULL_ERR);
-	if (tp(s, 1) < tp(s, 2) && tp(s, 2) > tp(s, 3), tp(s, 1) < tp(s, 3))
+	if (tp(s, 1) < tp(s, 2) && tp(s, 2) > tp(s, 3) && tp(s, 1) < tp(s, 3))
 	{
 		sa(stack_inf);
 		ra(stack_inf);
 	}
-	else if (tp(s, 1) > tp(s, 2) && tp(s, 2) < tp(s, 3), tp(s, 1) < tp(s, 3))
+	else if (tp(s, 1) > tp(s, 2) && tp(s, 2) < tp(s, 3) && tp(s, 1) < tp(s, 3))
 		sa(stack_inf);
-	else if (tp(s, 1) < tp(s, 2) && tp(s, 2) > tp(s, 3), tp(s, 1) > tp(s, 3))
+	else if (tp(s, 1) < tp(s, 2) && tp(s, 2) > tp(s, 3) && tp(s, 1) > tp(s, 3))
 		rra(stack_inf);
-	else if (tp(s, 1) > tp(s, 2) && tp(s, 2) < tp(s, 3), tp(s, 1) > tp(s, 3))
+	else if (tp(s, 1) > tp(s, 2) && tp(s, 2) < tp(s, 3) && tp(s, 1) > tp(s, 3))
 		ra(stack_inf);
-	else if (tp(s, 1) > tp(s, 2) && tp(s, 2) > tp(s, 3), tp(s, 1) > tp(s, 3))
+	else if (tp(s, 1) > tp(s, 2) && tp(s, 2) > tp(s, 3) && tp(s, 1) > tp(s, 3))
 	{
 		ra(stack_inf);
 		sa(stack_inf);
@@ -55,7 +55,7 @@ void	super_short_sort(t_stack_inf *stack_inf)
 
 int	tp(t_list *stack, int i)
 {
-	int	*ret;
+	int	ret;
 	int	j;
 
 	ret = 0;
@@ -64,13 +64,13 @@ int	tp(t_list *stack, int i)
 		return (ret);
 	while (j < i)
 	{
-		if (!stack)
-			throw_err();
+		// if (!stack)
+		// 	throw_err();
 		stack = stack->next;
 		j++;
 	}
-	ret = (int *)stack->content;
-	return (*ret);
+	ret = *(int *)stack->content;
+	return (ret);
 }
 
 void	sort_two(t_stack_inf *stack_inf)
@@ -102,22 +102,21 @@ void	sort_two(t_stack_inf *stack_inf)
 //	while (tp(st_inf->stack_a, 1) < tp(st_inf->stack_b, 1) && rra_i++ < u_num)
 //		rra(st_inf);
 //	pa(st_inf);
-	
 //	pa(st_inf);
 //}
 
-short_sort(t_stack_inf *stack_inf)
+void	short_sort(t_stack_inf *stack_inf)
 {
 	t_list	*s;
 
 	s = stack_inf->stack_a;
-	if (tp(s, 1) < tp(s, 2) && tp(s, 2) > tp(s, 3), tp(s, 1) < tp(s, 3))
+	if (tp(s, 1) < tp(s, 2) && tp(s, 2) > tp(s, 3) && tp(s, 1) < tp(s, 3))
 	{
 		ra(stack_inf);
 		sa(stack_inf);
 		rra(stack_inf);
 	}
-	else if (tp(s, 1) < tp(s, 2) && tp(s, 2) > tp(s, 3), tp(s, 1) > tp(s, 3))
+	else if (tp(s, 1) < tp(s, 2) && tp(s, 2) > tp(s, 3) && tp(s, 1) > tp(s, 3))
 	{
 		ra(stack_inf);
 		sa(stack_inf);
@@ -149,7 +148,7 @@ short_sort(t_stack_inf *stack_inf)
 //	stack_inf = malloc(1 * sizeof(t_stack_inf));
 //	op_inf = malloc(1 * sizeof(t_ope_inf));
 //	//if (!stack_inf || !op_inf)
-//	//	throw_err(stack_inf, op_inf, MEM_ALLOCATION_ERR);
+//	//	throw_err(stack_inf, op_inf, MEM_ALLOC_ERR);
 //	op_inf->i = 0;
 //	stack_inf->stack_a = ft_lstnew(&b);
 //	stack_inf->stack_a->next = ft_lstnew(&e);

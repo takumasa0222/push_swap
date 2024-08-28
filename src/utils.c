@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tamatsuu <tamatsuu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tamatsuu <tamatsuu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 23:16:38 by tamatsuu          #+#    #+#             */
-/*   Updated: 2024/08/25 21:46:01 by tamatsuu         ###   ########.fr       */
+/*   Updated: 2024/08/29 01:02:08 by tamatsuu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	free_stack_inf(t_stack_inf *stack_inf)
 
 void	delete(void *val)
 {
-	val = NULL;
+	(void)val;
 	return ;
 }
 
@@ -49,4 +49,15 @@ int	write_err(int err_code)
 {
 	ft_putstr_fd(ERR_MSG, STDOUT_FILENO);
 	return (err_code);
+}
+
+void	throw_validation_err(char **str_arry, int *int_arry, int err_code)
+{
+	int	err_no;
+
+	err_no = 0;
+	free_arry(&str_arry);
+	free(int_arry);
+	err_no = write_err(err_code);
+	exit(err_no);
 }

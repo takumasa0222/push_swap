@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_b_operation.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tamatsuu <tamatsuu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tamatsuu <tamatsuu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 05:17:54 by tamatsuu          #+#    #+#             */
-/*   Updated: 2024/08/24 00:12:47 by tamatsuu         ###   ########.fr       */
+/*   Updated: 2024/08/29 04:41:08 by tamatsuu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 
 void	sb(t_stack_inf *stack_inf)
 {
-	t_list	*tmp;
-	t_list	*tmp2;
+	// t_list	*tmp;
+	// t_list	*tmp2;
 
 	if (!stack_inf)
 		throw_err(stack_inf, NULL, ARG_NULL_ERR);
 	if (ft_lstsize(stack_inf->stack_b) < 2)
 		return ;
 	ft_lstswap_front(&stack_inf->stack_b);
-	add_ope(stack_inf->ope_inf, PB);
+	add_ope(stack_inf->ope_inf, SB);
 }
 
 void	pb(t_stack_inf *stack_inf)
@@ -53,7 +53,7 @@ void	rb(t_stack_inf *stack_inf)
 	stack_inf->stack_b = stack_inf->stack_b->next;
 	tmp->next = NULL;
 	ft_lstadd_back(&stack_inf->stack_b, tmp);
-	add_ope(stack_inf->ope_inf, PB);
+	add_ope(stack_inf->ope_inf, RB);
 }
 
 void	rrb(t_stack_inf *stack_inf)
@@ -71,5 +71,5 @@ void	rrb(t_stack_inf *stack_inf)
 		second_last = second_last->next;
 	second_last->next = NULL;
 	ft_lstadd_front(&stack_inf->stack_b, tmp);
-	add_ope(stack_inf->ope_inf, PB);
+	add_ope(stack_inf->ope_inf, RRB);
 }

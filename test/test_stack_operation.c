@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test_stack_operation.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tamatsuu <tamatsuu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tamatsuu <tamatsuu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:05:32 by tamatsuu          #+#    #+#             */
-/*   Updated: 2024/08/20 14:06:21 by tamatsuu         ###   ########.fr       */
+/*   Updated: 2024/08/28 23:14:13 by tamatsuu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	main(void)
 	stack_inf = malloc(1 * sizeof(t_stack_inf));
 	op_inf = malloc(1 * sizeof(t_ope_inf));
 	//if (!stack_inf || !op_inf)
-	//	throw_err(stack_inf, op_inf, MEM_ALLOCATION_ERR);
+	//	throw_err(stack_inf, op_inf, MEM_ALLOC_ERR);
 	op_inf->i = 0;
 	stack_inf->stack_a = ft_lstnew(&a);
 	stack_inf->stack_a->next = ft_lstnew(&b);

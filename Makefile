@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tamatsuu <tamatsuu@student.42.fr>          +#+  +:+       +#+         #
+#    By: tamatsuu <tamatsuu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/25 21:40:24 by tamatsuu          #+#    #+#              #
-#    Updated: 2024/08/25 21:50:26 by tamatsuu         ###   ########.fr        #
+#    Updated: 2024/08/29 04:14:17 by tamatsuu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,17 @@ CC			= cc
 CFLAGS		= -Wall -Wextra -Werror 
 SRCS		= ./src/main.c \
 ./src/utils.c \
-./src/validate.c
-
+./src/validate.c \
+./src/validation_utils.c \
+./src/push_swap.c \
+./src/push_swap_utils.c \
+./src/push_swap_utils_2.c \
+./src/move.c \
+./src/ope_info_utils.c \
+./src/sort.c \
+./src/stack_a_operation.c \
+./src/stack_b_operation.c \
+./src/listutils.c
 
 
 OBJS		= $(SRCS:%.c=%.o)

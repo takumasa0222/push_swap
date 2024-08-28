@@ -3,27 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   validate.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tamatsuu <tamatsuu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tamatsuu <tamatsuu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 02:53:27 by tamatsuu          #+#    #+#             */
-/*   Updated: 2024/08/25 23:34:49 by tamatsuu         ###   ########.fr       */
+/*   Updated: 2024/08/29 00:48:38 by tamatsuu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "../libft/libft.h"
 #include "push_swap.h"
-#include <stdio.h>
+#include <limits.h>
 
-void	validate_args(int argc, char **argv)
+void	validate_args(int argc, char **argv, int **int_arry, int *len)
 {
 	char	**arg_arry;
-	int		**int_arry;
 
 	number_of_arg_check(argc);
 	trsform_arg(argc, argv, &arg_arry);
-	arg_integer_check(arg_arry, &int_arry);
-	//arg_dup_check();
+	init_int_arry(arg_arry, int_arry);
+	int_check_and_assign(arg_arry, int_arry);
+	*len = arry_size(arg_arry);
+	free_arry(&arg_arry);
 }
 
 void	number_of_arg_check(int argc)
@@ -32,7 +33,7 @@ void	number_of_arg_check(int argc)
 		exit(0);
 }
 
-void	trsform_arg(int argc, char **argv, char ***arg_arry)
+int	trsform_arg(int argc, char **argv, char ***arg_arry)
 {
 	int		i;
 	char	**temp;
@@ -43,81 +44,55 @@ void	trsform_arg(int argc, char **argv, char ***arg_arry)
 	i = 0;
 	k = 0;
 	temp = NULL;
-	cnt = arg_size(argc, argv);
+	cnt = arg_size(argc, argv, *arg_arry);
 	*arg_arry = (char **)malloc((cnt + 1) * sizeof(char *));
 	if (!*arg_arry)
-		throw_err(NULL, NULL, MEM_ALLOCATION_ERR);
-	while (i < argc - 1 && k <cnt)
+		throw_validation_err(NULL, NULL, MEM_ALLOC_ERR);
+	while (i < argc - 1 && k < cnt)
 	{	
 		temp = ft_split(argv[i++ + 1], ' ');
 		if (!temp)
-			throw_err(NULL, NULL, MEM_ALLOCATION_ERR);
+			throw_validation_err(*arg_arry, NULL, MEM_ALLOC_ERR);
 		j = 0;
 		while (j < arry_size(temp))
 			(*arg_arry)[k++] = temp[j++];
 		free(temp);
 		temp = NULL;
 	}
-	(*arg_arry)[k] = NULL;
+	return ((*arg_arry)[k] = NULL, 0);
 }
 
-
-int	arg_size(int argc, char **argv)
+int	int_check_and_assign(char **arry, int **int_arry)
 {
 	int		i;
-	int		ret;
-	char	**temp;
+	long	tmp;
 
 	i = 0;
-	ret = 0;
-	temp = NULL;
-	while (i < argc - 1)
-	{
-		temp = ft_split(argv[i + 1], ' ');
-		if (!temp)
-			throw_err(NULL, NULL, MEM_ALLOCATION_ERR);
-		ret = ret + arry_size(temp);
-		free_arry(&temp);
-		i++;
-	}
-	return (ret);
-}
-
-void	free_arry(char ***arry)
-{
-	int	i;
-
-	i = 0;
-	if (!arry && !*arry)
-		return ;
-	while ((*arry)[i])
-	{	
-		free((*arry)[i]);
-		(*arry)[i] = NULL;
-		i++;
-	}
-	free(*arry);
-	*arry = NULL;
-}
-
-int	arry_size(char **arry)
-{
-	int	i;
-
-	i = 0;
-	if (!arry)
-		return (i);
+	tmp = 0;
+	if (!arry || !int_arry)
+		throw_validation_err(arry, *int_arry, MEM_ALLOC_ERR);
 	while (arry[i])
+	{
+		if (ft_strlen(arry[i]) > INT_MIN_LEN || !digit_check(arry[i]))
+			throw_validation_err(arry, *int_arry, INVALID_ARG_ERR);
+		tmp = (ft_atol(arry[i]));
+		if (tmp < INT_MIN || INT_MAX < tmp)
+			throw_validation_err(arry, *int_arry, INVALID_ARG_ERR);
+		(*int_arry)[i] = (int)tmp;
 		i++;
-	return (i);
+	}
+	return (0);
 }
 
-void	arg_integer_check(int argc, char **argv)
+int	init_int_arry(char **char_arry, int **int_arry)
 {
-	int	i;
-	i = 0;
-	while (i < argc - 1)
-	{
-		if(ft_isdigit(ft_atoi(argv[i]))
-	}
+	int	arry_len;
+
+	if (!char_arry || !int_arry)
+		throw_validation_err(char_arry, *int_arry, MEM_ALLOC_ERR);
+	arry_len = arry_size(char_arry);
+	*int_arry = (int *)malloc((arry_len) * sizeof(int));
+	if (!*int_arry)
+		throw_validation_err(char_arry, NULL, MEM_ALLOC_ERR);
+	return (0);
 }
