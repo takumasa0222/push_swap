@@ -6,7 +6,7 @@
 /*   By: tamatsuu <tamatsuu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 05:16:08 by tamatsuu          #+#    #+#             */
-/*   Updated: 2024/08/29 04:51:51 by tamatsuu         ###   ########.fr       */
+/*   Updated: 2024/08/31 20:33:32 by tamatsuu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,21 +29,28 @@ void	init(int **int_arry, int len)
 		throw_err(stack_inf, op_inf, MEM_ALLOC_ERR);
 	}
 	op_inf->i = 0;
-	init_stack(stack_inf, *int_arry, len);
 	stack_inf->ope_inf = op_inf;
 	stack_inf->ope_inf->op_arry = op_arry;
+	stack_inf->original_arry = copy_arry(*int_arry, len, stack_inf);
+	init_stack(stack_inf, stack_inf->original_arry, len);
 	create_index(int_arry, len, stack_inf);
 	stack_inf->sorted_arry = *int_arry;
 	stack_inf->arry_len = len;
 	
-	t_list *temp_a = stack_inf->stack_a; 
+	t_list *temp_a = stack_inf->stack_a;
 	while (temp_a)
 	{
 		printf("value is %d\n",*((int*)temp_a->content));
 		temp_a = temp_a->next;
 	}
-	// push_swap(stack_inf);
-	// describe_ope(stack_inf->ope_inf);
+	push_swap(stack_inf);
+	describe_ope(stack_inf->ope_inf);
+	t_list *temp_res = stack_inf->stack_a;
+	while (temp_res)
+	{
+		printf("value is %d\n",*((int*)temp_res->content));
+		temp_res = temp_res->next;
+	}
 	// end_program(stack_inf);
 }
 
@@ -52,6 +59,8 @@ int	push_swap(t_stack_inf *stack_inf)
 	int	lst_size;
 
 	lst_size = stack_inf->arry_len;
+	if (is_arry_sorted(stack_inf, A_TOP, lst_size))
+		return (0);
 	if (1 < lst_size && lst_size <= 3)
 		basic_sort(stack_inf, A_TOP, lst_size);
 	else if (3 < lst_size)
@@ -66,10 +75,15 @@ void	split_chunk(t_stack_inf *stack_inf, int pos, int index, int unit_num)
 	int	sec_index;
 	int	n_unum;
 	int	a_position;
+	int	i;
 
 	if (unit_num <= 3)
 	{
-		basic_sort(stack_inf, pos, unit_num);
+		i = 0;
+		while (i++ < unit_num)
+			move_to_a_top(stack_inf, pos);
+		if (!is_arry_sorted(stack_inf, A_TOP, unit_num))
+			basic_sort(stack_inf, pos, unit_num);
 		return ;
 	}
 	split_operation(stack_inf, pos, index, unit_num);
@@ -78,7 +92,7 @@ void	split_chunk(t_stack_inf *stack_inf, int pos, int index, int unit_num)
 	a_position = A_BOTTOM;
 	if (ft_lstsize(stack_inf->stack_a) <= n_unum + unit_num % 3)
 		a_position = A_TOP;
-	split_chunk(stack_inf, a_position, sec_index + n_unum / 3, n_unum 
+	split_chunk(stack_inf, a_position, sec_index + (n_unum + unit_num % 3) / 3, n_unum \
 	+ unit_num % 3);
 	split_chunk(stack_inf, B_TOP, index + n_unum / 3, n_unum);
 	split_chunk(stack_inf, B_BOTTOM, index - (n_unum - n_unum / 3), n_unum);
@@ -96,14 +110,14 @@ void	split_operation(t_stack_inf *stack_inf, int pos, int index, int u_num)
 	j = 0;
 	while (i < u_num)
 	{
-		target_num = take_first_elem(stack_inf, pos);
+		target_num = take_first_elem(stack_inf, pos, 0);
 		if (target_num < stack_inf->sorted_arry[index])
 			move_to_b_bottom(stack_inf, pos);
 		else if (stack_inf->sorted_arry[index + u_num / 3] <= target_num)
 			move_to_a_bottom(stack_inf, pos);
 		else
 			move_to_b_top(stack_inf, pos);
-		if (pos != A_TOP && take_first_elem(stack_inf, pos) == target_num)
+		if (pos != A_TOP && take_first_elem(stack_inf, pos, target_num) == target_num)
 		{
 			move_to_a_top(stack_inf, pos);
 			j++;

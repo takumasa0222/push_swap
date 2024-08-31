@@ -6,7 +6,7 @@
 #    By: tamatsuu <tamatsuu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/25 21:40:24 by tamatsuu          #+#    #+#              #
-#    Updated: 2024/08/29 04:14:17 by tamatsuu         ###   ########.fr        #
+#    Updated: 2024/08/31 15:42:12 by tamatsuu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,12 +41,12 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	@make bonus -C libft 
-	$(CC) $(OBJS) -Lft -lft -L./libft -o $(NAME)
+	$(CC) $(OBJS) -Lft -lft -L./libft -g -o $(NAME)
 
 
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -g -O0 -c $< -o $@
 
 clean:
 	@make clean -C libft

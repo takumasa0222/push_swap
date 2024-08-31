@@ -6,7 +6,7 @@
 /*   By: tamatsuu <tamatsuu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 17:17:16 by tamatsuu          #+#    #+#             */
-/*   Updated: 2024/08/29 04:51:22 by tamatsuu         ###   ########.fr       */
+/*   Updated: 2024/08/31 20:35:36 by tamatsuu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 
 void	basic_sort(t_stack_inf *stack_inf, int pos, int unit_num)
 {
-	int	i;
-
-	i = 0;
-	while (i++ < unit_num)
-		move_to_a_top(stack_inf, pos);
+	// int	i;
+	(void)pos;
+	// i = 0;
+	// while (i++ < unit_num)
+	// 	move_to_a_top(stack_inf, pos);
 	if (unit_num == 2)
 		sort_two(stack_inf);
 	else if (ft_lstsize(stack_inf->stack_a) == 3)
@@ -27,7 +27,7 @@ void	basic_sort(t_stack_inf *stack_inf, int pos, int unit_num)
 	else if (3 < ft_lstsize(stack_inf->stack_a))
 		short_sort(stack_inf);
 }
-#include <stdio.h>
+
 void	super_short_sort(t_stack_inf *stack_inf)
 {
 	t_list	*s;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tamatsuu <tamatsuu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tamatsuu <tamatsuu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 02:30:52 by tamatsuu          #+#    #+#             */
-/*   Updated: 2024/08/24 04:35:03 by tamatsuu         ###   ########.fr       */
+/*   Updated: 2024/08/31 21:11:14 by tamatsuu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,15 @@ void	move_back(t_stack_inf *stack_inf, int pos, int j)
 	i = 0;
 	while (i < j)
 	{
-		if (pos == B_TOP || pos == B_BOTTOM)
+		if (pos == B_TOP)
 			pb(stack_inf);
 		else if (pos == A_BOTTOM)
 			ra(stack_inf);
+		else if (pos == B_BOTTOM)
+		{
+			pb(stack_inf);
+			rb(stack_inf);
+		}
 		i++;
 	}
 }

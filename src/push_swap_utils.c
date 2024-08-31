@@ -6,14 +6,14 @@
 /*   By: tamatsuu <tamatsuu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 04:08:36 by tamatsuu          #+#    #+#             */
-/*   Updated: 2024/08/29 04:58:15 by tamatsuu         ###   ########.fr       */
+/*   Updated: 2024/08/31 19:01:00 by tamatsuu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "push_swap.h"
 
-int	take_first_elem(t_stack_inf *stack_inf, int pos)
+int	take_first_elem(t_stack_inf *stack_inf, int pos, int t_num)
 {
 	t_list	*last_lst;
 
@@ -25,13 +25,15 @@ int	take_first_elem(t_stack_inf *stack_inf, int pos)
 		last_lst = ft_lstlast(stack_inf->stack_a);
 		return (*(int *)last_lst->content);
 	}
-	else if (pos == B_TOP)
+	else if (pos == B_TOP && stack_inf->stack_b)
 		return (*(int *)stack_inf->stack_b->content);
-	else
+	else if (pos == B_BOTTOM && stack_inf->stack_b)
 	{
 		last_lst = ft_lstlast(stack_inf->stack_b);
 		return (*(int *)last_lst->content);
 	}
+	else
+		return (t_num + 1);
 }
 
 void	init_stack(t_stack_inf *stack_inf, int *int_arry, int len)

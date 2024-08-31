@@ -6,7 +6,7 @@
 /*   By: tamatsuu <tamatsuu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 20:51:48 by tamatsuu          #+#    #+#             */
-/*   Updated: 2024/08/29 04:35:18 by tamatsuu         ###   ########.fr       */
+/*   Updated: 2024/08/31 20:34:23 by tamatsuu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,9 @@
 # define ERR_NO 99
 # define INT_MIN_LEN 11
 
+# define NOT_SORTED 0
+# define SORTED 1
+
 # define ERR_MSG "ERROR\n"
 
 enum e_push_swap_code
@@ -67,6 +70,7 @@ typedef struct s_stack_inf
 	t_ope_inf	*ope_inf;
 	int			*sorted_arry;
 	int			arry_len;
+	int			*original_arry;
 }	t_stack_inf;
 
 // validate.c
@@ -94,13 +98,16 @@ void	split_chunk(t_stack_inf *stack_inf, int pos, int index, int unit_num);
 void	split_operation(t_stack_inf *stack_inf, int pos, int index, int u_num);
 
 // push_swap_utils.c
-int		take_first_elem(t_stack_inf *stack_inf, int pos);
+int		take_first_elem(t_stack_inf *stack_inf, int pos, int t_num);
 void	init_stack(t_stack_inf *stack_inf, int *int_arry, int len);
 void	create_index(int **int_arry, int len, t_stack_inf *stack_inf);
 int		partition(int *arr, int low, int high);
 void	quick_sort(int *arr, int low, int high);
 // push_swap_utils_2.c
 void	swap(int *a, int *b);
+int		*copy_arry(int *int_arry, int len, t_stack_inf *stack_inf);
+int		is_arry_sorted(t_stack_inf *stack_inf, int pos, int unit_num);
+int		take_x_elem(t_stack_inf *s_inf, int pos, int i);
 // move.c
 void	move_to_a_top(t_stack_inf *stack_inf, int pos);
 void	move_to_a_bottom(t_stack_inf *stack_inf, int pos);
