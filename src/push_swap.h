@@ -6,7 +6,7 @@
 /*   By: tamatsuu <tamatsuu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 20:51:48 by tamatsuu          #+#    #+#             */
-/*   Updated: 2024/09/01 18:01:31 by tamatsuu         ###   ########.fr       */
+/*   Updated: 2024/09/01 18:19:43 by tamatsuu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,17 @@
 # define NULL_ERR -3
 # define INVALID_ARG_ERR -4
 
-# define SA_W "SA"
-# define PA_W "PA"
-# define RA_W "RA"
-# define RRA_W "RRA"
-# define SB_W "SB"
-# define PB_W "PB"
-# define RB_W "RB"
-# define RRB_W "RRB"
-# define RR_W "RR"
-# define RRR_W "RRR"
-# define SS_W "SS"
+# define SA_W "sa"
+# define PA_W "pa"
+# define RA_W "ra"
+# define RRA_W "rra"
+# define SB_W "sb"
+# define PB_W "pb"
+# define RB_W "rb"
+# define RRB_W "rrb"
+# define RR_W "rr"
+# define RRR_W "rrr"
+# define SS_W "ss"
 
 # define ERR_NO 99
 # define INT_MIN_LEN 11
