@@ -6,7 +6,7 @@
 /*   By: tamatsuu <tamatsuu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 05:16:08 by tamatsuu          #+#    #+#             */
-/*   Updated: 2024/08/31 20:33:32 by tamatsuu         ###   ########.fr       */
+/*   Updated: 2024/08/31 22:27:06 by tamatsuu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,25 @@ void	split_chunk(t_stack_inf *stack_inf, int pos, int index, int unit_num)
 	int	a_position;
 	int	i;
 
-	if (unit_num <= 3)
+	// if (unit_num <= 3)
+	// {
+	// 	i = 0;
+	// 	while (i++ < unit_num)
+	// 		move_to_a_top(stack_inf, pos);
+	// 	if (!is_arry_sorted(stack_inf, A_TOP, unit_num))
+	// 		basic_sort(stack_inf, pos, unit_num);
+	// 	return ;
+	// }
+	if (unit_num <= 3 || is_arry_sorted(stack_inf, pos, unit_num))
 	{
-		i = 0;
-		while (i++ < unit_num)
-			move_to_a_top(stack_inf, pos);
-		if (!is_arry_sorted(stack_inf, A_TOP, unit_num))
+		if (!is_arry_sorted(stack_inf, pos, unit_num))
 			basic_sort(stack_inf, pos, unit_num);
+		else
+		{
+			i = 0;
+			while (i++ < unit_num)
+				move_to_a_top(stack_inf, pos);
+		}
 		return ;
 	}
 	split_operation(stack_inf, pos, index, unit_num);
