@@ -7,3 +7,5 @@ push_swap
 tmp
 temp
 push_swap
+*tmp
+tmp*
