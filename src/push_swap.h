@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tamatsuu <tamatsuu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tamatsuu <tamatsuu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 20:51:48 by tamatsuu          #+#    #+#             */
-/*   Updated: 2024/08/31 20:34:23 by tamatsuu         ###   ########.fr       */
+/*   Updated: 2024/09/01 18:01:31 by tamatsuu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@
 # define PB_W "PB"
 # define RB_W "RB"
 # define RRB_W "RRB"
+# define RR_W "RR"
+# define RRR_W "RRR"
+# define SS_W "SS"
 
 # define ERR_NO 99
 # define INT_MIN_LEN 11
@@ -53,8 +56,10 @@ enum e_push_swap_code
 	PB,
 	RB,
 	RRB,
+	SS,
 	RR,
-	RRR
+	RRR,
+	UNDEFINED
 };
 
 typedef struct s_ope_inf
@@ -96,10 +101,11 @@ void	init(int **int_arry, int len);
 int		push_swap(t_stack_inf *stack_inf);
 void	split_chunk(t_stack_inf *stack_inf, int pos, int index, int unit_num);
 void	split_operation(t_stack_inf *stack_inf, int pos, int index, int u_num);
+void	init_stack_inf(t_stack_inf **stack_inf);
 
 // push_swap_utils.c
 int		take_first_elem(t_stack_inf *stack_inf, int pos, int t_num);
-void	init_stack(t_stack_inf *stack_inf, int *int_arry, int len);
+void	init_stack(t_stack_inf *stack_inf, int *int_arry, int len, int *o_arry);
 void	create_index(int **int_arry, int len, t_stack_inf *stack_inf);
 int		partition(int *arr, int low, int high);
 void	quick_sort(int *arr, int low, int high);
@@ -116,6 +122,9 @@ void	move_to_b_bottom(t_stack_inf *stack_inf, int pos);
 void	move_back(t_stack_inf *stack_inf, int pos, int j);
 // ope_info_utils.c
 void	add_ope(t_ope_inf *ope_inf, enum e_push_swap_code cd);
+void	optimize_ope(t_ope_inf *ope_inf);
+void	describe_ope(t_ope_inf *ope_inf);
+
 // sort.c
 void	basic_sort(t_stack_inf *stack_inf, int pos, int unit_num);
 void	super_short_sort(t_stack_inf *stack_inf);
@@ -136,6 +145,8 @@ void	rb(t_stack_inf *stack_inf);
 void	rrb(t_stack_inf *stack_inf);
 // listutils.c
 void	ft_lstswap_front(t_list **lst);
-void	describe_ope(t_ope_inf *ope_inf);
+
+
+void	move_chank_to_a_top(t_stack_inf *s_inf, int pos, int u_num);
 
 #endif

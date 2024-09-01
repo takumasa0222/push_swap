@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tamatsuu <tamatsuu@student.42tokyo.jp>     +#+  +:+       +#+         #
+#    By: tamatsuu <tamatsuu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/25 21:40:24 by tamatsuu          #+#    #+#              #
-#    Updated: 2024/08/31 15:42:12 by tamatsuu         ###   ########.fr        #
+#    Updated: 2024/09/01 16:36:36 by tamatsuu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,8 @@ SRCS		= ./src/main.c \
 ./src/sort.c \
 ./src/stack_a_operation.c \
 ./src/stack_b_operation.c \
-./src/listutils.c
+./src/listutils.c \
+./src/move_2.c
 
 
 OBJS		= $(SRCS:%.c=%.o)

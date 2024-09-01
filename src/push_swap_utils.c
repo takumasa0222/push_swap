@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tamatsuu <tamatsuu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tamatsuu <tamatsuu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 04:08:36 by tamatsuu          #+#    #+#             */
-/*   Updated: 2024/08/31 19:01:00 by tamatsuu         ###   ########.fr       */
+/*   Updated: 2024/09/01 18:03:05 by tamatsuu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	take_first_elem(t_stack_inf *stack_inf, int pos, int t_num)
 		return (t_num + 1);
 }
 
-void	init_stack(t_stack_inf *stack_inf, int *int_arry, int len)
+void	init_stack(t_stack_inf *stack_inf, int *int_arry, int len, int *o_arry)
 {
 	int		i;
 	t_list	*temp;
@@ -44,7 +44,7 @@ void	init_stack(t_stack_inf *stack_inf, int *int_arry, int len)
 	i = 0;
 	temp = ft_lstnew(&int_arry[i]);
 	if (!temp)
-		return (free(int_arry), throw_err(stack_inf, NULL, MEM_ALLOC_ERR));
+		return (free(o_arry), throw_err(stack_inf, NULL, MEM_ALLOC_ERR));
 	stack_inf->stack_a = temp;
 	i++;
 	while (i < len)
