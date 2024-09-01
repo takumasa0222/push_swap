@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tamatsuu <tamatsuu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: tamatsuu <tamatsuu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 00:03:12 by tamatsuu          #+#    #+#             */
-/*   Updated: 2024/08/29 00:32:19 by tamatsuu         ###   ########.fr       */
+/*   Updated: 2024/09/01 18:33:23 by tamatsuu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ int	digit_check(char *str)
 			return (0);
 		i++;
 	}
+	if (i == 1 && (str[0] == '-' || str[0] == '+'))
+		return (0);
 	return (1);
 }
 
