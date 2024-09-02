@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tamatsuu <tamatsuu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tamatsuu <tamatsuu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 23:16:38 by tamatsuu          #+#    #+#             */
-/*   Updated: 2024/09/01 17:55:03 by tamatsuu         ###   ########.fr       */
+/*   Updated: 2024/09/02 01:24:19 by tamatsuu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,9 @@
 
 void	throw_err(t_stack_inf *stack_inf, t_ope_inf *ope_inf, int err_code)
 {
-	int	err_no;
-
-	err_no = 0;
 	free_stack_inf(stack_inf);
 	free(ope_inf);
-	err_no = write_err(err_code);
+	write_err(err_code);
 	exit(0);
 }
 
@@ -55,11 +52,8 @@ int	write_err(int err_code)
 
 void	throw_validation_err(char **str_arry, int *int_arry, int err_code)
 {
-	int	err_no;
-
-	err_no = 0;
 	free_arry(&str_arry);
 	free(int_arry);
-	err_no = write_err(err_code);
+	write_err(err_code);
 	exit(0);
 }

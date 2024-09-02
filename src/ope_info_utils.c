@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ope_info_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tamatsuu <tamatsuu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tamatsuu <tamatsuu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 00:07:21 by tamatsuu          #+#    #+#             */
-/*   Updated: 2024/09/01 17:23:21 by tamatsuu         ###   ########.fr       */
+/*   Updated: 2024/09/02 01:43:52 by tamatsuu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,22 @@ void	optimize_ope(t_ope_inf *ope_inf)
 	i = 0;
 	while (i < ope_inf->i - 1)
 	{
-		if (ope_inf->op_arry[i] == RA && ope_inf->op_arry[i + 1] == RB)
+		if ((ope_inf->op_arry[i] == RA && ope_inf->op_arry[i + 1] == RB) \
+		|| (ope_inf->op_arry[i] == RB && ope_inf->op_arry[i + 1] == RA))
 		{
 			ope_inf->op_arry[i] = RR;
 			ope_inf->op_arry[i + 1] = UNDEFINED;
-		}	
-		else if (ope_inf->op_arry[i] == RB && ope_inf->op_arry[i + 1] == RA)
+		}
+		else if ((ope_inf->op_arry[i] == RRA && ope_inf->op_arry[i + 1] == RA) \
+		|| (ope_inf->op_arry[i] == RA && ope_inf->op_arry[i + 1] == RRA))
 		{
-			ope_inf->op_arry[i] = RR;
+			ope_inf->op_arry[i] = UNDEFINED;
+			ope_inf->op_arry[i + 1] = UNDEFINED;
+		}
+		else if ((ope_inf->op_arry[i] == PA && ope_inf->op_arry[i + 1] == PB) \
+		|| (ope_inf->op_arry[i] == PB && ope_inf->op_arry[i + 1] == PA))
+		{
+			ope_inf->op_arry[i] = UNDEFINED;
 			ope_inf->op_arry[i + 1] = UNDEFINED;
 		}
 		i++;
