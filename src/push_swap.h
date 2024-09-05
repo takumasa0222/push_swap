@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tamatsuu <tamatsuu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tamatsuu <tamatsuu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 20:51:48 by tamatsuu          #+#    #+#             */
-/*   Updated: 2024/09/01 18:19:43 by tamatsuu         ###   ########.fr       */
+/*   Updated: 2024/09/06 00:32:32 by tamatsuu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 # include "../libft/libft.h"
 
 # define ARRY_SIZE 500
-# define A_BOTTOM 0
-# define B_TOP 1
-# define B_BOTTOM 2
-# define A_TOP 3
+# define A_TOP 1
+# define A_BOTTOM 2
+# define B_BOTTOM 3
+# define B_TOP 4
 
 # define MEM_ALLOC_ERR -1
 # define ARG_NULL_ERR -2
@@ -145,8 +145,11 @@ void	rb(t_stack_inf *stack_inf);
 void	rrb(t_stack_inf *stack_inf);
 // listutils.c
 void	ft_lstswap_front(t_list **lst);
-
-
+//
+int		is_partial_sorted(t_stack_inf *s_i, int pos, int unum);
+void	partial_sort(t_stack_inf *stack_inf, int pos, int unit_num);
+void	b_short_sort(t_stack_inf *stack_inf);
+//
 void	move_chank_to_a_top(t_stack_inf *s_inf, int pos, int u_num);
 
 #endif

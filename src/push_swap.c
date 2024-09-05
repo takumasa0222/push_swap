@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tamatsuu <tamatsuu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tamatsuu <tamatsuu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 05:16:08 by tamatsuu          #+#    #+#             */
-/*   Updated: 2024/09/01 18:00:03 by tamatsuu         ###   ########.fr       */
+/*   Updated: 2024/09/06 01:02:10 by tamatsuu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "push_swap.h"
+#include <stdio.h>
 
 void	init(int **int_arry, int len)
 {
@@ -35,6 +36,12 @@ void	init(int **int_arry, int len)
 	stack_inf->sorted_arry = *int_arry;
 	stack_inf->arry_len = len;
 	push_swap(stack_inf);
+	// t_list *temp_a = stack_inf->stack_a;
+	// while (temp_a)
+	// {
+	// 	printf("value is %d\n",*((int*)temp_a->content));
+	// 	temp_a = temp_a->next;
+	// }
 	optimize_ope(stack_inf->ope_inf);
 	describe_ope(stack_inf->ope_inf);
 	free_stack_inf(stack_inf);
@@ -72,9 +79,13 @@ void	split_chunk(t_stack_inf *stack_inf, int pos, int index, int u_num)
 	int	n_unum;
 	int	a_position;
 
-	if (u_num <= 3 || is_arry_sorted(stack_inf, pos, u_num))
+	if (u_num <= 3 || is_arry_sorted(stack_inf, pos, u_num) \
+	|| (u_num > 3 && is_partial_sorted(stack_inf, pos, u_num)))
 	{
-		if (!is_arry_sorted(stack_inf, pos, u_num))
+		if (u_num > 3 && !is_arry_sorted(stack_inf, pos, u_num) \
+		&& is_partial_sorted(stack_inf, pos, u_num))
+			partial_sort(stack_inf, pos, u_num);
+		else if (!is_arry_sorted(stack_inf, pos, u_num))
 			basic_sort(stack_inf, pos, u_num);
 		else
 			move_chank_to_a_top(stack_inf, pos, u_num);
